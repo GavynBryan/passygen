@@ -5,6 +5,7 @@ class PasswordGenerator extends React.Component {
     state = {
         generatedPassword: "SumPass4y0u"
     };
+    let conversion = new Map([["l","1"], ["e","3"], ["t", "7"], ["o","0"], ["s", "$"], ["a","4"]])
 
     constructor(props) {
         super(props);
@@ -35,6 +36,15 @@ class PasswordGenerator extends React.Component {
         const noun = nouns[rand2];
 
         this.setPasswordState(adjective + "%" + noun);
+    }
+
+    convertToLeet() {
+        let p4ssw0rd = this.state.generatedPassword.toLowerCase();
+        this.conversion.forEach((_out, _raw) => {
+            if(p4ssw0rd.includes(_raw)) 
+                p4ssw0rd = p4ssw0rd.replace(_raw, _out);
+        }
+        this.setPasswordState(p4ssword);
     }
 
     render() {
